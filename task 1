@@ -1,0 +1,135 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+	int value;
+	Node* next;
+
+	Node() {
+		value = 0;
+		next = nullptr;
+	}
+
+	Node(int value) {
+		this->value = value;
+		next = nullptr;
+	}
+
+};
+
+void putNodeToTail(Node*& head, int value) {
+	Node* n = new Node(value);
+
+	if (head == nullptr) {
+		head = n;
+		return;
+	}
+
+	Node* temp = head;
+
+	while (temp->next != nullptr) {
+		temp = temp->next;
+	}
+	temp->next = n;
+	
+
+}
+
+void display(Node*& head) {
+	Node* temp = head;
+
+	while (temp != nullptr) {
+		cout << temp->value << " " << " ";
+		temp = temp->next;
+	}
+	cout << endl << endl;
+
+}
+
+void numLessThenZero(Node* head) {
+	Node* temp = head;
+
+	cout << "num less then zero: ";
+
+	while (temp != nullptr) {
+		if (temp->value < 0) {
+			cout << temp->value << " ";
+
+		}
+		temp = temp->next;		
+	}
+	cout << endl << endl;
+}
+
+void increaceByOne(Node* head) {
+	Node* temp = head;
+
+	int a;
+	cout << "input the number which you want to increase: ";
+	cin >> a;
+
+	cout << "each number increase by: " << a << endl;
+
+	while (temp != nullptr) {
+		temp->value = temp->value + a;
+		temp = temp->next;
+	}
+	
+}
+
+void numWantToDel(Node* head) {
+	
+
+	int a;
+	cout << " input num which you want to delete: ";
+	cin >> a;
+	
+	if (head->value == a)
+	{
+		head = head->next; 
+	}
+
+	Node* temp = head;
+
+	while (temp->next != nullptr) 
+	{
+		if (temp->next->value == a && temp->next->next == nullptr)
+		{
+			temp->next = nullptr; 
+			break; 
+		}
+		if (temp->next->value == a)
+		{
+			temp->next = temp->next->next; 
+		}
+		temp = temp->next; 
+	}
+}
+
+int main() {
+	Node* head = nullptr;
+
+	putNodeToTail(head, 1);
+	putNodeToTail(head, -3);
+	putNodeToTail(head, 6);
+	putNodeToTail(head, 5);
+	putNodeToTail(head, -2);
+	putNodeToTail(head, 9);
+	putNodeToTail(head, -7);
+	putNodeToTail(head, 7);
+	putNodeToTail(head, 5);
+	putNodeToTail(head, -1);
+
+
+	display(head);
+
+	numLessThenZero(head);
+
+	display(head);
+	increaceByOne(head);
+	display(head);
+
+	numWantToDel(head);
+	display(head);
+}
